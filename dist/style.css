@@ -1,0 +1,164 @@
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #343a40;
+  color: #f8f9fa;
+  font: 18px sans-serif, Helvetica, Arial;
+}
+
+h1,
+h2,
+p,
+span {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2 {
+  color: #dee2e6;
+}
+
+#user-inputs {
+  margin: 0.5rem 0 0.75rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+input,
+button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 30px;
+}
+
+input {
+  padding-left: 5px;
+}
+button {
+  padding: 2px;
+}
+
+#current-weather-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+#city-date-time {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 2.5rem 1.5rem 3.5rem;
+}
+
+#current-conditions-header {
+  text-align: center;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+}
+
+#current-temp-desc {
+  height: 200px;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: auto auto auto auto;
+}
+
+#current-other-data {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+table {
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 8rem;
+  border-right: 2px solid #ced4da;
+}
+
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+
+#current-temp-container {
+  grid-row: 1 / 2;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+}
+
+#current-temp-header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+#current-temp {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: end;
+}
+
+#current-temp-units {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+#current-weather-icon {
+  grid-row: 2 / 3;
+}
+
+#current-desc-container {
+  grid-row: 3 / 4;
+}
+
+#current-feel-container {
+  display: flex;
+  grid-row: 4 / 5;
+}
+
+.current-other {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+}
+
+.current-other-header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+.current-other-data {
+  justify-self: end;
+}
+
+.current-other-unit {
+  justify-self: start;
+}
+
+#uvi {
+  grid-column: 1 / 3;
+  justify-self: center;
+}

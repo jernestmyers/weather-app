@@ -31,20 +31,51 @@
       <div id="city-date-time">
         <h1 id="city-name"></h1>
         <p id="current-date"></p>
-        <span>time:<p id="current-time"></p></span>
-        <span>sunrise:<p id="sunrise"></p></span>
-        <span>sunset:<p id="sunset"></p></span>
+        <table id="display-time-table">
+          <thead>
+              <tr class="display-time">
+                  <th class="time">Current Time</th>
+                  <th class="time">Sunrise</th>
+                  <th class="time">Sunset</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="display-time">
+                <td id="current-time"></td>
+                <td id="sunrise"></td>
+                <td id="sunset"></td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+      <div id="current-conditions-header">
+        <h1>Current Conditions</h1>
       </div>
       <div id="current-temp-desc">
-        <div id="current-temp-container"><h2 id="current-temp"></h2><h2 class="degrees">&#176F</h2></div>
+        <div id="current-temp-container">
+          <h2 id="current-temp-header">Temperature</h2>
+          <h2 id="current-temp"></h2>
+          <h2 id="current-temp-units" class="degrees">&#176F</h2>
+        </div>
         <div id="current-desc-container"><p id="current-desc"></p></div>
         <img id="current-weather-icon" src="#" />
-        <div id="current-feel-container"><p id="current-feel"></p><p class="degrees">&#176F</p></div>
+        <div id="current-feel-container"><p>Feels like&nbsp</p><p id="current-feel"></p><p class="degrees">&#176F</p></div>
       </div>
       <div id="current-other-data">
-        <span>Humidity:<p id="humidity"></p>%</span>
-        <span class="speed">Wind:<p id="wind-speed"></p>mph</span>
-        <span>UV Index:<p id="uvi"></p></span>
+        <div class="current-other" id="humidity-container">
+          <p class="current-other-header">Humidity</p>
+          <p class="current-other-data" id="humidity"></p>
+          <p class="current-other-unit" id="percent-sign">%</p>
+        </div>
+        <div class="current-other" id="wind-container">
+          <p class="current-other-header">Wind Speed</p>
+          <p class="current-other-data" id="wind-speed"></p>
+          <p class="current-other-unit" id="speed">mph</p>
+        </div>
+        <div class="current-other" id="uvi-container">
+          <p class="current-other-header">UV Index</p>
+          <p class="current-other-data" id="uvi"></p>
+        </div>
       </div>
     </div>
     <script src="./main.js"></script>
