@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <div id="content">
+    <div id="user-inputs">
       <form>
         <input
           type="text"
@@ -16,8 +16,36 @@
           autocomplete="off"
         />
         <button id="submit-location">search</button>
-        <img src="#" />
       </form>
+      <div>
+        <input type="radio" id="imperial" name="select-units" value="imperial"
+               checked>
+        <label for="imperial">&#176F</label>
+      </div>
+      <div>
+        <input type="radio" id="metric" name="select-units" value="metric">
+        <label for="metric">&#176C</label>
+      </div>
+    </div>
+    <div id="current-weather-container">
+      <div id="city-date-time">
+        <h1 id="city-name"></h1>
+        <p id="current-date"></p>
+        <span>time:<p id="current-time"></p></span>
+        <span>sunrise:<p id="sunrise"></p></span>
+        <span>sunset:<p id="sunset"></p></span>
+      </div>
+      <div id="current-temp-desc">
+        <div id="current-temp-container"><h2 id="current-temp"></h2><h2 class="degrees">&#176F</h2></div>
+        <div id="current-desc-container"><p id="current-desc"></p></div>
+        <img id="current-weather-icon" src="#" />
+        <div id="current-feel-container"><p id="current-feel"></p><p class="degrees">&#176F</p></div>
+      </div>
+      <div id="current-other-data">
+        <span>Humidity:<p id="humidity"></p>%</span>
+        <span class="speed">Wind:<p id="wind-speed"></p>mph</span>
+        <span>UV Index:<p id="uvi"></p></span>
+      </div>
     </div>
     <script src="./main.js"></script>
   </body>
