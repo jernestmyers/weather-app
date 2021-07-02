@@ -1,5 +1,5 @@
 import { fromUnixTime, format } from "date-fns";
-import { handleCurrentWeatherData } from "./handleDOM";
+import { handleCurrentWeatherData, handleForecastData } from "./handleDOM";
 
 async function callCurrentWeatherAPI(location, units) {
   try {
@@ -56,10 +56,13 @@ function setWeatherDataObject(city, weatherData) {
     sunrise: weatherData.current.sunrise,
     sunset: weatherData.current.sunset,
   };
+  // console.log(currentWeatherData);
   handleCurrentWeatherData(currentWeatherData);
+
   let weeksForecast = [];
   for (let i = 0; i < weatherData.daily.length; i++) {
     const dailyWeather = {
+      date: weatherData.daily[i].dt,
       hiTemp: weatherData.daily[i].temp.max,
       loTemp: weatherData.daily[i].temp.min,
       desc: weatherData.daily[i].weather[0].description,
@@ -68,16 +71,10 @@ function setWeatherDataObject(city, weatherData) {
     };
     weeksForecast.push(dailyWeather);
   }
-  //   formatTimestamp(
-  //     currentWeatherData.currentTime,
-  //     currentWeatherData.sunrise,
-  //     currentWeatherData.sunset
-  //   );
-  console.log(currentWeatherData);
-  console.log(weeksForecast);
+  handleForecastData(weeksForecast);
 }
 
-function formatTimestamp(timeOfNow, timeOfSunrise, timeOfSunset) {
+function formatCurrentDayTimestamp(timeOfNow, timeOfSunrise, timeOfSunset) {
   let formattedTimes = [];
   formattedTimes.push(
     format(new Date(fromUnixTime(arguments[0])), "eeee: MMMM d, yyyy")
@@ -90,4 +87,19 @@ function formatTimestamp(timeOfNow, timeOfSunrise, timeOfSunset) {
   return formattedTimes;
 }
 
-export { callCurrentWeatherAPI, formatTimestamp };
+function formatForecastTimestamp(unixCodesArray) {
+  let formattedDays = [];
+  formattedDays.push(`Today`);
+  for (let i = 1; i < unixCodesArray.length; i++) {
+    formattedDays.push(
+      format(new Date(fromUnixTime(unixCodesArray[i])), "eeee")
+    );
+  }
+  return formattedDays;
+}
+
+export {
+  callCurrentWeatherAPI,
+  formatCurrentDayTimestamp,
+  formatForecastTimestamp,
+};

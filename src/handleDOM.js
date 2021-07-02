@@ -1,4 +1,7 @@
-import { formatTimestamp } from "./handleAPI";
+import {
+  formatCurrentDayTimestamp,
+  formatForecastTimestamp,
+} from "./handleAPI";
 
 function handleCurrentWeatherData(currentWeather) {
   displayCurrentTimesAndLocation(currentWeather);
@@ -7,12 +10,10 @@ function handleCurrentWeatherData(currentWeather) {
 }
 
 function displayCurrentTimesAndLocation(currentWeather) {
-  const cityDateTimeContainer = document.querySelector(`#city-date-time`);
-
   const cityName = document.querySelector(`#city-name`);
   cityName.textContent = currentWeather.cityName;
 
-  const dateAndTimesArray = formatTimestamp(
+  const dateAndTimesArray = formatCurrentDayTimestamp(
     currentWeather.currentTime,
     currentWeather.sunrise,
     currentWeather.sunset
@@ -52,4 +53,65 @@ function displayCurrentOtherData(currentWeather) {
   UVI.textContent = Math.round(currentWeather.uvi);
 }
 
-export { handleCurrentWeatherData };
+function handleForecastData(forecast) {
+  console.log(forecast);
+  const formattedDaysArray = getFormattedDays(forecast);
+  displayForecast(forecast, formattedDaysArray);
+}
+
+function getFormattedDays(weatherForecast) {
+  const unixCodes = weatherForecast.map((day) => {
+    return day.date;
+  });
+  const formattedDays = formatForecastTimestamp(unixCodes);
+  return formattedDays;
+}
+
+function displayForecast(weatherForecast, daysArray) {
+  const forecastContainer = document.querySelector(`#forecast-container`);
+  forecastContainer.innerHTML = ``;
+  weatherForecast.forEach((day, index) => {
+    const dayContainer = document.createElement(`div`);
+    dayContainer.classList.add(`daily-container`);
+    const dayToDisplay = document.createElement(`h3`);
+    dayToDisplay.textContent = daysArray[index];
+    dayContainer.appendChild(dayToDisplay);
+
+    const hiTempAndLoTempArray = [day.hiTemp, day.loTemp];
+    const temperatureContainer = document.createElement(`div`);
+    for (let i = 0; i < hiTempAndLoTempArray.length; i++) {
+      temperatureContainer.classList.add(`temp-container`);
+      const temperature = document.createElement(`p`);
+      temperature.classList.add(`forecast-temperature`);
+      const units = document.createElement(`p`);
+      temperature.textContent = Math.round(hiTempAndLoTempArray[i]);
+      units.innerHTML = "&#176F";
+      units.classList.add(`degrees`);
+      temperatureContainer.appendChild(temperature);
+      temperatureContainer.appendChild(units);
+      if (i === 0) {
+        const spacer = document.createElement(`p`);
+        spacer.innerHTML = `&nbsp/&nbsp`;
+        temperatureContainer.appendChild(spacer);
+      }
+    }
+    dayContainer.appendChild(temperatureContainer);
+
+    const dailyWeatherIcon = document.createElement(`img`);
+    dailyWeatherIcon.src = `http://openweathermap.org/img/wn/${day.icon}@2x.png`;
+    dayContainer.appendChild(dailyWeatherIcon);
+
+    const dailyDescription = document.createElement(`p`);
+    dailyDescription.classList.add(`daily-description`);
+    dailyDescription.textContent = day.desc;
+    dayContainer.appendChild(dailyDescription);
+
+    const dailyRainChance = document.createElement(`p`);
+    dailyRainChance.textContent = `Rain: ${Math.round(day.precip * 100)}%`;
+    dayContainer.appendChild(dailyRainChance);
+
+    forecastContainer.appendChild(dayContainer);
+  });
+}
+
+export { handleCurrentWeatherData, handleForecastData };
