@@ -54,7 +54,6 @@ function displayCurrentOtherData(currentWeather) {
 }
 
 function handleForecastData(forecast) {
-  console.log(forecast);
   const formattedDaysArray = getFormattedDays(forecast);
   displayForecast(forecast, formattedDaysArray);
 }

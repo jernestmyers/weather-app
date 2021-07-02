@@ -56,7 +56,6 @@ function setWeatherDataObject(city, weatherData) {
     sunrise: weatherData.current.sunrise,
     sunset: weatherData.current.sunset,
   };
-  // console.log(currentWeatherData);
   handleCurrentWeatherData(currentWeatherData);
 
   let weeksForecast = [];

@@ -8,23 +8,31 @@
 
   <body>
     <div id="user-inputs">
+      <div id="search-container">
       <form>
-        <input
+        <div id="search-bar">
+          <input
           type="text"
           id="input-location"
           placeholder="enter a city name"
           autocomplete="off"
         />
-        <button id="submit-location">search</button>
-      </form>
-      <div>
-        <input type="radio" id="imperial" name="select-units" value="imperial"
-               checked>
-        <label for="imperial">&#176F</label>
       </div>
-      <div>
-        <input type="radio" id="metric" name="select-units" value="metric">
-        <label for="metric">&#176C</label>
+      <div id="search-button">
+        <button id="submit-location">Search</button>
+      </div>
+      </form>
+      </div>
+      <div id="toggle-units">
+        <div>
+          <input class="toggle" type="radio" id="imperial" name="select-units" value="imperial"
+                checked>
+          <label for="imperial">&#176F</label>
+        </div>
+        <div>
+          <input class="toggle" type="radio" id="metric" name="select-units" value="metric">
+          <label for="metric">&#176C</label>
+        </div>
       </div>
     </div>
     <div id="current-weather-container">
