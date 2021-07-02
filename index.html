@@ -23,15 +23,14 @@
       </div>
       </form>
       </div>
-      <div id="toggle-units">
-        <div>
-          <input class="toggle" type="radio" id="imperial" name="select-units" value="imperial"
-                checked>
-          <label for="imperial">&#176F</label>
+      <div id="toggle-units-container">
+        <div class="units-display">
+          <p>&#176F</p>
         </div>
-        <div>
-          <input class="toggle" type="radio" id="metric" name="select-units" value="metric">
-          <label for="metric">&#176C</label>
+          <input type="checkbox" id="toggle-units" class="checkbox" />  
+          <label for="toggle-units" class="switch"></label>
+        <div class="units-display">
+          <p>&#176C</p>
         </div>
       </div>
     </div>
@@ -63,11 +62,12 @@
         <div id="current-temp-container">
           <h2 id="current-temp-header">Temperature</h2>
           <h2 id="current-temp"></h2>
-          <h2 id="current-temp-units" class="degrees">&#176F</h2>
+          <h2 id="current-temp-units" class="imperial">&#176F</h2>
+          <h2 id="current-temp-units" class="metric">&#176C</h2>
         </div>
         <div id="current-desc-container"><p id="current-desc"></p></div>
         <img id="current-weather-icon" src="#" />
-        <div id="current-feel-container"><p>Feels like&nbsp</p><p id="current-feel"></p><p class="degrees">&#176F</p></div>
+        <div id="current-feel-container"><p>Feels like&nbsp</p><p id="current-feel"></p><p class="imperial">&#176F</p><p class="metric">&#176C</p></div>
       </div>
       <div id="current-other-data">
         <div class="current-other" id="humidity-container">
@@ -78,7 +78,8 @@
         <div class="current-other" id="wind-container">
           <p class="current-other-header">Wind Speed</p>
           <p class="current-other-data" id="wind-speed"></p>
-          <p class="current-other-unit" id="speed">mph</p>
+          <p class="current-other-unit imperial" id="speed">&nbspmph</p>
+          <p class="current-other-unit metric" id="speed">&nbspm/s</p>
         </div>
         <div class="current-other" id="uvi-container">
           <p class="current-other-header">UV Index</p>
