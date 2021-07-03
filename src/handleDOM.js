@@ -40,7 +40,7 @@ function displayCurrentTempAndDescription(currentWeather) {
   const currentDescription = document.querySelector(`#current-desc`);
   currentDescription.textContent = currentWeather.desc;
   const currentWeatherIcon = document.querySelector(`#current-weather-icon`);
-  currentWeatherIcon.src = `http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`;
+  currentWeatherIcon.src = `https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`;
 }
 
 function displayCurrentOtherData(currentWeather) {
