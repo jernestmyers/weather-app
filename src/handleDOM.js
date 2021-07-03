@@ -143,4 +143,18 @@ function toggleUnitsForCurrentWeather(showElement, hideElement) {
   });
 }
 
-export { handleCurrentWeatherData, handleForecastData, toggleUnitsDisplayed };
+function errorHandler(condition) {
+  const errorMessage = document.querySelector(`#error-message-container`);
+  if (condition) {
+    errorMessage.style.display = `block`;
+  } else {
+    errorMessage.style.display = `none`;
+  }
+}
+
+export {
+  handleCurrentWeatherData,
+  handleForecastData,
+  toggleUnitsDisplayed,
+  errorHandler,
+};

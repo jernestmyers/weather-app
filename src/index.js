@@ -1,5 +1,5 @@
 import { callCurrentWeatherAPI } from "./handleAPI.js";
-import { toggleUnitsDisplayed } from "./handleDOM.js";
+import { toggleUnitsDisplayed, errorHandler } from "./handleDOM.js";
 
 const searchInput = document.querySelector(`#input-location`);
 const submitButton = document.querySelector(`#submit-location`);
@@ -9,6 +9,7 @@ toggleUnits.addEventListener(`change`, toggleUnitsDisplayed);
 
 submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
+  errorHandler();
   if (!toggleUnits.checked) {
     callCurrentWeatherAPI(searchInput.value, `imperial`);
   } else {
@@ -17,5 +18,5 @@ submitButton.addEventListener(`click`, (e) => {
   searchInput.value = ``;
 });
 
-// default weather on page load
+// ---------------- default weather on page load ---------------- //
 callCurrentWeatherAPI(`austin`, `imperial`);

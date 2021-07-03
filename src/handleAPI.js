@@ -1,5 +1,9 @@
 import { fromUnixTime, format } from "date-fns";
-import { handleCurrentWeatherData, handleForecastData } from "./handleDOM";
+import {
+  handleCurrentWeatherData,
+  handleForecastData,
+  errorHandler,
+} from "./handleDOM";
 
 async function callCurrentWeatherAPI(location, units) {
   try {
@@ -11,7 +15,7 @@ async function callCurrentWeatherAPI(location, units) {
 
     setLocationRequest(currentWeatherData, units);
   } catch (error) {
-    console.log(`error`);
+    errorHandler(error);
   }
 }
 
@@ -38,7 +42,7 @@ async function callOneCallAPI(city, lat, lon, units) {
 
     setWeatherDataObject(city, oneCallData, units);
   } catch (error) {
-    console.log(`error`);
+    errorHandler(error);
   }
 }
 

@@ -2,26 +2,29 @@
 
 <html>
   <head>
-    <title>weather</title>
+    <title>Weather</title>
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
     <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
     <div id="user-inputs">
       <div id="search-container">
-      <form>
-        <div id="search-bar">
-          <input
-          type="text"
-          id="input-location"
-          placeholder="enter a city name"
-          autocomplete="off"
-        />
-      </div>
-      <div id="search-button">
-        <button id="submit-location">Search</button>
-      </div>
-      </form>
+        <div id="search-criteria"><p>Search by Zip Code / City / City, State / City, Country</p></div>
+        <form>
+          <div id="search-bar">
+            <input
+            type="text"
+            id="input-location"
+            placeholder="enter a location"
+            autocomplete="off"
+          />
+          </div>
+          <div id="search-button">
+            <button id="submit-location">Search</button>
+          </div>
+        </form>
+        <div id="error-message-container"><p id="error-message">*&nbspLocation not found.</p></div>
       </div>
       <div id="toggle-units-container">
         <div class="units-display">
