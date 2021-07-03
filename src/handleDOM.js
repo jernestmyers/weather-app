@@ -102,7 +102,7 @@ function displayForecast(weatherForecast, daysArray, units) {
     dayContainer.appendChild(temperatureContainer);
 
     const dailyWeatherIcon = document.createElement(`img`);
-    dailyWeatherIcon.src = `http://openweathermap.org/img/wn/${day.icon}@2x.png`;
+    dailyWeatherIcon.src = `https://openweathermap.org/img/wn/${day.icon}@2x.png`;
     dayContainer.appendChild(dailyWeatherIcon);
 
     const dailyDescription = document.createElement(`p`);

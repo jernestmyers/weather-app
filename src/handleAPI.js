@@ -8,7 +8,7 @@ import {
 async function callCurrentWeatherAPI(location, units) {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=03d98fbb99cdd98bf3f142cba66d6f34`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=03d98fbb99cdd98bf3f142cba66d6f34`,
       { mode: "cors" }
     );
     const currentWeatherData = await response.json();
