@@ -1,31 +1,20 @@
 import { callCurrentWeatherAPI } from "./handleAPI.js";
+import { toggleUnitsDisplayed } from "./handleDOM.js";
 
 const searchInput = document.querySelector(`#input-location`);
 const submitButton = document.querySelector(`#submit-location`);
 const toggleUnits = document.querySelector(`#toggle-units`);
-// const weatherIcon = document.querySelector(`img`);
+
+toggleUnits.addEventListener(`change`, toggleUnitsDisplayed);
 
 submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
-  callCurrentWeatherAPI(searchInput.value, `imperial`);
-  searchInput.value = ``;
-});
-
-toggleUnits.addEventListener(`change`, (e) => {
-  console.log(e.target.checked);
-  console.log(
-    e.target.parentElement.parentElement.nextElementSibling.firstElementChild
-      .firstElementChild.textContent
-  );
-
-  const cityOnDisplay =
-    e.target.parentElement.parentElement.nextElementSibling.firstElementChild
-      .firstElementChild.textContent;
-  let unitsToDisplay = `imperial`;
-  if (e.target.checked) {
-    unitsToDisplay = `metric`;
+  if (!toggleUnits.checked) {
+    callCurrentWeatherAPI(searchInput.value, `imperial`);
+  } else {
+    callCurrentWeatherAPI(searchInput.value, `metric`);
   }
-  callCurrentWeatherAPI(cityOnDisplay, unitsToDisplay);
+  searchInput.value = ``;
 });
 
 // default weather on page load

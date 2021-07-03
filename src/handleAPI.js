@@ -36,13 +36,13 @@ async function callOneCallAPI(city, lat, lon, units) {
     );
     const oneCallData = await responseFromOneCall.json();
 
-    setWeatherDataObject(city, oneCallData);
+    setWeatherDataObject(city, oneCallData, units);
   } catch (error) {
     console.log(`error`);
   }
 }
 
-function setWeatherDataObject(city, weatherData) {
+function setWeatherDataObject(city, weatherData, units) {
   const currentWeatherData = {
     cityName: city,
     currentTime: weatherData.current.dt,
@@ -70,7 +70,7 @@ function setWeatherDataObject(city, weatherData) {
     };
     weeksForecast.push(dailyWeather);
   }
-  handleForecastData(weeksForecast);
+  handleForecastData(weeksForecast, units);
 }
 
 function formatCurrentDayTimestamp(timeOfNow, timeOfSunrise, timeOfSunset) {

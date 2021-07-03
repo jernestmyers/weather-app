@@ -1,4 +1,5 @@
 import {
+  callCurrentWeatherAPI,
   formatCurrentDayTimestamp,
   formatForecastTimestamp,
 } from "./handleAPI";
@@ -53,9 +54,9 @@ function displayCurrentOtherData(currentWeather) {
   UVI.textContent = Math.round(currentWeather.uvi);
 }
 
-function handleForecastData(forecast) {
+function handleForecastData(forecast, units) {
   const formattedDaysArray = getFormattedDays(forecast);
-  displayForecast(forecast, formattedDaysArray);
+  displayForecast(forecast, formattedDaysArray, units);
 }
 
 function getFormattedDays(weatherForecast) {
@@ -66,7 +67,7 @@ function getFormattedDays(weatherForecast) {
   return formattedDays;
 }
 
-function displayForecast(weatherForecast, daysArray) {
+function displayForecast(weatherForecast, daysArray, units) {
   const forecastContainer = document.querySelector(`#forecast-container`);
   forecastContainer.innerHTML = ``;
   weatherForecast.forEach((day, index) => {
@@ -82,12 +83,16 @@ function displayForecast(weatherForecast, daysArray) {
       temperatureContainer.classList.add(`temp-container`);
       const temperature = document.createElement(`p`);
       temperature.classList.add(`forecast-temperature`);
-      const units = document.createElement(`p`);
+      const unitsToDisplay = document.createElement(`p`);
       temperature.textContent = Math.round(hiTempAndLoTempArray[i]);
-      units.innerHTML = "&#176F";
-      units.classList.add(`degrees`);
+      if (units === `imperial`) {
+        unitsToDisplay.innerHTML = "&#176F";
+      } else {
+        unitsToDisplay.innerHTML = "&#176C";
+      }
+      unitsToDisplay.classList.add(`degrees`);
       temperatureContainer.appendChild(temperature);
-      temperatureContainer.appendChild(units);
+      temperatureContainer.appendChild(unitsToDisplay);
       if (i === 0) {
         const spacer = document.createElement(`p`);
         spacer.innerHTML = `&nbsp/&nbsp`;
@@ -113,4 +118,29 @@ function displayForecast(weatherForecast, daysArray) {
   });
 }
 
-export { handleCurrentWeatherData, handleForecastData };
+function toggleUnitsDisplayed(event) {
+  const cityOnDisplay =
+    event.target.parentElement.parentElement.nextElementSibling
+      .firstElementChild.firstElementChild.textContent;
+  let unitsToDisplay = `imperial`;
+  let unitsToHide = `metric`;
+  if (event.target.checked) {
+    unitsToDisplay = `metric`;
+    unitsToHide = `imperial`;
+  }
+  toggleUnitsForCurrentWeather(unitsToDisplay, unitsToHide);
+  callCurrentWeatherAPI(cityOnDisplay, unitsToDisplay);
+}
+
+function toggleUnitsForCurrentWeather(showElement, hideElement) {
+  const toggleOn = document.querySelectorAll(`.${showElement}`);
+  const toggleOff = document.querySelectorAll(`.${hideElement}`);
+  toggleOn.forEach((element) => {
+    element.style.display = `block`;
+  });
+  toggleOff.forEach((element) => {
+    element.style.display = `none`;
+  });
+}
+
+export { handleCurrentWeatherData, handleForecastData, toggleUnitsDisplayed };
